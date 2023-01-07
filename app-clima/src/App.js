@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import AppClima from "./pages/AppClima";
+import { ClimaProvider } from "./context/ClimaProvider";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import ClimaCiudad from "./pages/ClimaCiudad";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ClimaProvider>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/clima-por-pais" element={<AppClima />} />
+            <Route path="/clima-por-ciudad" element={<ClimaCiudad  />} />             
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </ClimaProvider>
+
+    // <div className="container-fluid mt-3">
+    //   <Header />
+    //   
+    // </div>
   );
-}
+};
 
 export default App;
