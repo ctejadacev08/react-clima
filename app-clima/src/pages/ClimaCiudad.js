@@ -5,11 +5,12 @@ import { useFetch } from "../hook/useFetch";
 
 const ClimaCiudad = () => {
 
-    const {counter,incrementar,decrementar}  = useCounter(0);
+  const {counter,incrementar,decrementar}  = useCounter(0);
 
-
+  const appID =process.env.REACT_APP_API_KEY; 
+  
   const { data, isloading, hasError } = useFetch(
-    "https://api.openweathermap.org/data/2.5/forecast?q=Puno&appid=b3bf2ddcdf37275a2106189a35d10d2a&units=metric"
+    `https://api.openweathermap.org/data/2.5/forecast?q=Puno&appid=${appID}&units=metric`
   );
 
   if (isloading || !data) {
